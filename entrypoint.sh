@@ -68,25 +68,25 @@ for changed in $DIFF; do
 done
 unset IFS
 
-if [ -z "$resources_to_restart" ]; then
-    echo "Nothing to restart"
-else
-    player_count=$(get_player_count)
-    if [ "$RESTART_SERVER_WHEN_0_PLAYERS" = true ] && [ "$player_count" -eq 0 ]; then
-        echo "Will restart the whole server due to 0 players"
-        icecon_command "quit"
-    elif [ "$RESTART_INDIVIDUAL_RESOURCES" = true ]; then
-        echo "Will restart individual resources"
-        for resource in $resources_to_restart; do
-            if exists_in_array "${resource}" "${IGNORED_RESOURCES}"; then
-                echo "Ignoring restart of the resource ${resource}"
-            else
-                echo "Restarting ${resource}"
-                icecon_command "ensure ${resource}"
-            fi
-        done
-    else
-        echo "Will restart the whole server"
-        icecon_command "quit"
-    fi
-fi
+# if [ -z "$resources_to_restart" ]; then
+#     echo "Nothing to restart"
+# else
+#     player_count=$(get_player_count)
+#     if [ "$RESTART_SERVER_WHEN_0_PLAYERS" = true ] && [ "$player_count" -eq 0 ]; then
+#         echo "Will restart the whole server due to 0 players"
+#         icecon_command "quit"
+#     elif [ "$RESTART_INDIVIDUAL_RESOURCES" = true ]; then
+#         echo "Will restart individual resources"
+#         for resource in $resources_to_restart; do
+#             if exists_in_array "${resource}" "${IGNORED_RESOURCES}"; then
+#                 echo "Ignoring restart of the resource ${resource}"
+#             else
+#                 echo "Restarting ${resource}"
+#                 icecon_command "ensure ${resource}"
+#             fi
+#         done
+#     else
+#         echo "Will restart the whole server"
+#         icecon_command "quit"
+#     fi
+# fi
